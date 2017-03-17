@@ -16,7 +16,7 @@ public class SentimentLookup {
 	private Date date;
 	
 	@ManyToOne
-	private Business business;
+	private LookupEntity entity;
 	@ManyToOne
 	private SentimentType sentimentType;
 
@@ -32,12 +32,12 @@ public class SentimentLookup {
 		this.id = id;
 	}
 
-	public Business getBusiness() {
-		return business;
+	public LookupEntity getEntity() {
+		return entity;
 	}
 
-	public void setBusiness(Business business) {
-		this.business = business;
+	public void setEntity(LookupEntity business) {
+		this.entity = business;
 	}
 
 	public Date getDate() {
