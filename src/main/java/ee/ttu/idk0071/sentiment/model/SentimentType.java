@@ -1,5 +1,6 @@
 package ee.ttu.idk0071.sentiment.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,6 +11,7 @@ public class SentimentType {
 	public static final String TYPE_CODE_NEGATIVE = "NEG";
 	
 	@Id
+	@Column(columnDefinition = "bpchar(3)")
 	private String code;
 	private String name;
 

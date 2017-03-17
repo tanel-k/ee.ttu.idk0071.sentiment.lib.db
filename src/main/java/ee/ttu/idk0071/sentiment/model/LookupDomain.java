@@ -1,24 +1,26 @@
 package ee.ttu.idk0071.sentiment.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class SentimentLookupDomain {
+public class LookupDomain {
 	@Id
-	private Integer id;
+	@Column(columnDefinition = "int2(6)")
+	private Integer code;
 	private String name;
 
-	public SentimentLookupDomain() {
+	public LookupDomain() {
 		
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getCode() {
+		return code;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
 	public String getName() {

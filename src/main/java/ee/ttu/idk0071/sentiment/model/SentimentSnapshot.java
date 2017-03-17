@@ -1,27 +1,34 @@
 package ee.ttu.idk0071.sentiment.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class SentimentSnapshot {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="sentiment_snapshot_seq_gen", sequenceName="sentiment_snapshot_id_seq")  
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sentiment_snapshot_seq_gen")
 	private Long id;
-	private Long rank;
+	@Column(columnDefinition = "int2(6)")
+	private Integer rank;
 	private String url;
 	private String title;
-	private Float trustLevel;
+	private Double trustLevel;
+	private Date date;
 
 	@ManyToOne
-	private SentimentLookup sentimentLookup;
+	private Lookup lookup;
 	@ManyToOne
 	private SentimentType sentimentType;
 	@ManyToOne
-	private SentimentLookupDomain sentimentLookupDomain;
+	private LookupDomain lookupDomain;
 
 	public SentimentSnapshot() {
 		
@@ -35,11 +42,11 @@ public class SentimentSnapshot {
 		this.id = id;
 	}
 
-	public Long getRank() {
+	public Integer getRank() {
 		return rank;
 	}
 
-	public void setRank(Long rank) {
+	public void setRank(Integer rank) {
 		this.rank = rank;
 	}
 
@@ -59,20 +66,20 @@ public class SentimentSnapshot {
 		this.title = title;
 	}
 
-	public Float getTrustLevel() {
+	public Double getTrustLevel() {
 		return trustLevel;
 	}
 
-	public void setTrustLevel(Float trustLevel) {
+	public void setTrustLevel(Double trustLevel) {
 		this.trustLevel = trustLevel;
 	}
 
-	public SentimentLookup getSentimentLookup() {
-		return sentimentLookup;
+	public Lookup getLookup() {
+		return lookup;
 	}
 
-	public void setSentimentLookup(SentimentLookup sentimentLookup) {
-		this.sentimentLookup = sentimentLookup;
+	public void setLookup(Lookup lookup) {
+		this.lookup = lookup;
 	}
 
 	public SentimentType getSentimentType() {
@@ -83,11 +90,19 @@ public class SentimentSnapshot {
 		this.sentimentType = sentimentType;
 	}
 
-	public SentimentLookupDomain getSentimentLookupDomain() {
-		return sentimentLookupDomain;
+	public LookupDomain getLookupDomain() {
+		return lookupDomain;
 	}
 
-	public void setSentimentLookupDomain(SentimentLookupDomain sentimentLookupDomain) {
-		this.sentimentLookupDomain = sentimentLookupDomain;
+	public void setLookupDomain(LookupDomain lookupDomain) {
+		this.lookupDomain = lookupDomain;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }
