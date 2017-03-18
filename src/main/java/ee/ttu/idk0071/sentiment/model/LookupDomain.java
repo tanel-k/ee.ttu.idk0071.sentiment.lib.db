@@ -3,6 +3,7 @@ package ee.ttu.idk0071.sentiment.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class LookupDomain {
@@ -10,6 +11,10 @@ public class LookupDomain {
 	@Column(columnDefinition = "int2(6)")
 	private Integer code;
 	private String name;
+	private boolean active;
+
+	@ManyToOne
+	private LookupDomainType lookupDomainType;
 
 	public LookupDomain() {
 		
@@ -31,4 +36,19 @@ public class LookupDomain {
 		this.name = name;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public LookupDomainType getLookupDomainType() {
+		return lookupDomainType;
+	}
+
+	public void setLookupDomainType(LookupDomainType lookupDomainType) {
+		this.lookupDomainType = lookupDomainType;
+	}
 }
