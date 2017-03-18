@@ -2,7 +2,6 @@ package ee.ttu.idk0071.sentiment.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +15,6 @@ public class SentimentSnapshot {
 	@SequenceGenerator(name="sentiment_snapshot_seq_gen", sequenceName="sentiment_snapshot_id_seq")  
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sentiment_snapshot_seq_gen")
 	private Long id;
-	@Column(columnDefinition = "int2(6)")
-	private Integer rank;
 	private String url;
 	private String title;
 	private Double trustLevel;
@@ -40,14 +37,6 @@ public class SentimentSnapshot {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Integer getRank() {
-		return rank;
-	}
-
-	public void setRank(Integer rank) {
-		this.rank = rank;
 	}
 
 	public String getUrl() {
