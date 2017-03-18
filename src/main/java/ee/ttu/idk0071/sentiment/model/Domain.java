@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class LookupDomain {
+public class Domain {
 	@Id
 	@Column(columnDefinition = "int2(6)")
 	private Integer code;
@@ -14,9 +14,9 @@ public class LookupDomain {
 	private boolean active;
 
 	@ManyToOne
-	private LookupDomainType lookupDomainType;
+	private DomainType domainType;
 
-	public LookupDomain() {
+	public Domain() {
 		
 	}
 
@@ -44,11 +44,11 @@ public class LookupDomain {
 		this.active = active;
 	}
 
-	public LookupDomainType getLookupDomainType() {
-		return lookupDomainType;
+	public DomainType getDomainType() {
+		return domainType;
 	}
 
-	public void setLookupDomainType(LookupDomainType lookupDomainType) {
-		this.lookupDomainType = lookupDomainType;
+	public void setLookupDomainType(DomainType domainType) {
+		this.domainType = domainType;
 	}
 }

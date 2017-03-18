@@ -1,7 +1,5 @@
 package ee.ttu.idk0071.sentiment.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,17 +13,13 @@ public class SentimentSnapshot {
 	@SequenceGenerator(name="sentiment_snapshot_seq_gen", sequenceName="sentiment_snapshot_id_seq")  
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sentiment_snapshot_seq_gen")
 	private Long id;
-	private String url;
-	private String title;
+	private String source;
 	private Double trustLevel;
-	private Date date;
 
 	@ManyToOne
-	private Lookup lookup;
+	private DomainLookup domainLookup;
 	@ManyToOne
 	private SentimentType sentimentType;
-	@ManyToOne
-	private LookupDomain lookupDomain;
 
 	public SentimentSnapshot() {
 		
@@ -39,20 +33,12 @@ public class SentimentSnapshot {
 		this.id = id;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getSource() {
+		return source;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	public Double getTrustLevel() {
@@ -63,12 +49,12 @@ public class SentimentSnapshot {
 		this.trustLevel = trustLevel;
 	}
 
-	public Lookup getLookup() {
-		return lookup;
+	public DomainLookup getDomainLookup() {
+		return domainLookup;
 	}
 
-	public void setLookup(Lookup lookup) {
-		this.lookup = lookup;
+	public void setDomainLookup(DomainLookup domainLookup) {
+		this.domainLookup = domainLookup;
 	}
 
 	public SentimentType getSentimentType() {
@@ -77,21 +63,5 @@ public class SentimentSnapshot {
 
 	public void setSentimentType(SentimentType sentimentType) {
 		this.sentimentType = sentimentType;
-	}
-
-	public LookupDomain getLookupDomain() {
-		return lookupDomain;
-	}
-
-	public void setLookupDomain(LookupDomain lookupDomain) {
-		this.lookupDomain = lookupDomain;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 }

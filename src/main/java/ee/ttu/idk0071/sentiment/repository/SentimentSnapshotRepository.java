@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import ee.ttu.idk0071.sentiment.model.SentimentSnapshot;
 
 public interface SentimentSnapshotRepository extends CrudRepository<SentimentSnapshot, Long>{
-	public List<SentimentSnapshot> findByLookupId(Long lookupId);
+	public List<SentimentSnapshot> findByDomainLookupId(Long domainLookupId);
 }

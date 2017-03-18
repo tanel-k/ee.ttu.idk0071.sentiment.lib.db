@@ -5,13 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class LookupDomainType {
+public class DomainType {
 	@Id
 	@Column(columnDefinition = "int2(6)")
 	private Integer code;
 	private String name;
 
-	public LookupDomainType() {
+	public DomainType() {
 		
 	}
 
