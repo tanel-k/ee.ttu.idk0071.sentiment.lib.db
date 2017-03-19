@@ -14,7 +14,6 @@ public class DomainLookup {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="domain_lookup_seq_gen")
 	private Long id;
 
-	private Long totalCount;
 	private Long positiveCount;
 	private Long negativeCount;
 	private Long neutralCount;
@@ -61,14 +60,6 @@ public class DomainLookup {
 
 	public void setDomain(Domain domain) {
 		this.domain = domain;
-	}
-
-	public Long getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(Long totalCount) {
-		this.totalCount = totalCount;
 	}
 
 	public Long getPositiveCount() {
@@ -120,7 +111,6 @@ public class DomainLookup {
 	}
 
 	public void setCounts(Long negative, Long neutral, Long positive) {
-		setTotalCount(negative + neutral + positive);
 		setNegativeCount(negative);
 		setNeutralCount(neutral);
 		setPositiveCount(positive);
