@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class LookupState {
+public class DomainLookupState {
 	@Id
 	@Column(columnDefinition = "int2(6)")
 	private Integer code;

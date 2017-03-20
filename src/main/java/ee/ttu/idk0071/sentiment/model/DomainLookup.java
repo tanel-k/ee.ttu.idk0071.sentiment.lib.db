@@ -18,14 +18,10 @@ public class DomainLookup {
 	private Long negativeCount;
 	private Long neutralCount;
 
-	private Double positiveQty;
-	private Double negativeQty;
-	private Double neutralQty;
-
-	@ManyToOne
-	private SentimentType sentimentType;
 	@ManyToOne
 	private Lookup lookup;
+	@ManyToOne
+	private DomainLookupState domainLookupState;
 
 	@ManyToOne
 	private Domain domain;
@@ -38,20 +34,20 @@ public class DomainLookup {
 		this.id = id;
 	}
 
+	public void setDomainLookupState(DomainLookupState domainLookupState) {
+		this.domainLookupState = domainLookupState;
+	}
+
+	public DomainLookupState getDomainLookupState() {
+		return domainLookupState;
+	}
+
 	public Lookup getLookup() {
 		return lookup;
 	}
 
 	public void setLookup(Lookup lookup) {
 		this.lookup = lookup;
-	}
-
-	public SentimentType getSentimentType() {
-		return sentimentType;
-	}
-
-	public void setSentimentType(SentimentType sentimentType) {
-		this.sentimentType = sentimentType;
 	}
 
 	public Domain getDomain() {
@@ -86,39 +82,9 @@ public class DomainLookup {
 		this.neutralCount = neutralCount;
 	}
 
-	public Double getPositiveQty() {
-		return positiveQty;
-	}
-
-	public void setPositiveQty(Double positiveQty) {
-		this.positiveQty = positiveQty;
-	}
-
-	public Double getNegativeQty() {
-		return negativeQty;
-	}
-
-	public void setNegativeQty(Double negativeQty) {
-		this.negativeQty = negativeQty;
-	}
-
-	public Double getNeutralQty() {
-		return neutralQty;
-	}
-
-	public void setNeutralQty(Double neutralQty) {
-		this.neutralQty = neutralQty;
-	}
-
 	public void setCounts(Long negative, Long neutral, Long positive) {
 		setNegativeCount(negative);
 		setNeutralCount(neutral);
 		setPositiveCount(positive);
-	}
-
-	public void setQuantities(Double negative, Double neutral, Double positive) {
-		setNegativeQty(negative);
-		setNeutralQty(neutral);
-		setPositiveQty(positive);
 	}
 }

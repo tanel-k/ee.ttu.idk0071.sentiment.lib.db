@@ -23,8 +23,6 @@ public class Lookup {
 
 	@ManyToOne
 	private LookupEntity lookupEntity;
-	@ManyToOne
-	private LookupState lookupState;
 
 	@OneToMany(mappedBy="lookup", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<DomainLookup> domainLookups;
@@ -39,14 +37,6 @@ public class Lookup {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public void setLookupState(LookupState lookupState) {
-		this.lookupState = lookupState;
-	}
-
-	public LookupState getLookupState() {
-		return lookupState;
 	}
 
 	public LookupEntity getLookupEntity() {
