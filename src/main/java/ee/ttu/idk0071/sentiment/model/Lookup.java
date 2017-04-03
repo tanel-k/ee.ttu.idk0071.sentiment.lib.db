@@ -1,6 +1,7 @@
 package ee.ttu.idk0071.sentiment.model;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,7 +26,7 @@ public class Lookup {
 	private LookupEntity lookupEntity;
 
 	@OneToMany(mappedBy="lookup", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<DomainLookup> domainLookups;
+	private List<DomainLookup> domainLookups = new LinkedList<DomainLookup>();
 
 	public Lookup() {
 
