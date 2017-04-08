@@ -7,7 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="refid")
 public class DomainLookup {
 	@Id
 	@SequenceGenerator(name="domain_lookup_seq_gen", sequenceName="domain_lookup_id_seq")  
