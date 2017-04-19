@@ -21,7 +21,8 @@ public class DomainLookup {
 	private Long positiveCount;
 	private Long negativeCount;
 	private Long neutralCount;
-
+	private Double score;
+	
 	@ManyToOne
 	private Lookup lookup;
 	@ManyToOne
@@ -90,5 +91,13 @@ public class DomainLookup {
 		setNegativeCount(negative);
 		setNeutralCount(neutral);
 		setPositiveCount(positive);
+	}
+	
+	public Double getScore(){
+		return score;
+	}
+	
+	public void setScore(Double score){
+		this.score = score;
 	}
 }
