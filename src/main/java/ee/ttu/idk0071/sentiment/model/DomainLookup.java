@@ -96,8 +96,17 @@ public class DomainLookup {
 		this.score = score;
 	}
 
-	public void setCounts(Long negative, Long neutral, Long positive) {
-		setNegativeCount(negative);
-		setNeutralCount(neutral);
-		setPositiveCount(positive);
-	}}
+	public void setCounts(Long negCount, Long neuCount, Long posCount) {
+		setNegativeCount(negCount);
+		setNeutralCount(neuCount);
+		setPositiveCount(posCount);
+		
+		// set score
+		Long negPosCount = negCount + posCount;
+		if (negPosCount > 0) {
+			setScore(negCount.floatValue() / negPosCount.floatValue() * 100F);
+		} else {
+			setScore(null);
+		}
+	}
+}
