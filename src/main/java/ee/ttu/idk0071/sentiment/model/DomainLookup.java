@@ -22,7 +22,7 @@ public class DomainLookup {
 	private Long negativeCount;
 	private Long neutralCount;
 	// @Column(columnDefinition = "float8")
-	private Float score;
+	private Float negativityScore;
 	
 	@ManyToOne
 	private Lookup lookup;
@@ -88,12 +88,12 @@ public class DomainLookup {
 		this.neutralCount = neutralCount;
 	}
 
-	public Float getScore(){
-		return score;
+	public Float getNegativityScore() {
+		return negativityScore;
 	}
 
-	public void setScore(Float score){
-		this.score = score;
+	public void setNegativityScore(Float score) {
+		this.negativityScore = score;
 	}
 
 	public void setCounts(Long negCount, Long neuCount, Long posCount) {
@@ -104,9 +104,9 @@ public class DomainLookup {
 		// set score
 		Long negPosCount = negCount + posCount;
 		if (negPosCount > 0) {
-			setScore(negCount.floatValue() / negPosCount.floatValue() * 100F);
+			setNegativityScore(negCount.floatValue() / negPosCount.floatValue() * 100F);
 		} else {
-			setScore(null);
+			setNegativityScore(null);
 		}
 	}
 }
