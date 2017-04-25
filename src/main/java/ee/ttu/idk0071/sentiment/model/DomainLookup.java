@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="refid")
 public class DomainLookup {
+	public static final Integer STATE_CODE_QUEUED = 1;
+	public static final Integer STATE_CODE_IN_PROGRESS = 2;
+	public static final Integer STATE_CODE_COMPLETE = 3;
+	public static final Integer STATE_CODE_ERROR = 4;
+
 	@Id
 	@SequenceGenerator(name="domain_lookup_seq_gen", sequenceName="domain_lookup_id_seq")  
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="domain_lookup_seq_gen")
@@ -21,6 +26,7 @@ public class DomainLookup {
 	private Long positiveCount;
 	private Long negativeCount;
 	private Long neutralCount;
+
 	private Float neutralityPercentage;
 	private Float positivityPercentage;
 	private Float negativityPercentage;
@@ -113,13 +119,17 @@ public class DomainLookup {
 		this.neutralityPercentage = neutralityPercentage;
 	}
 
+	public Long getTotalCount() {
+		return negativeCount + neutralCount + positiveCount;
+	}
+
 	public void setCounts(Long negCount, Long neuCount, Long posCount) {
 		setNegativeCount(negCount);
 		setNeutralCount(neuCount);
 		setPositiveCount(posCount);
 		
 		// set percentages
-		Long totalCount = negCount + neuCount + posCount;
+		Long totalCount = getTotalCount();
 		if (totalCount > 0) {
 			setNegativityPercentage(negCount.floatValue() / totalCount.floatValue() * 100F);
 			setNeutralityPercentage(neuCount.floatValue() / totalCount.floatValue() * 100F);
