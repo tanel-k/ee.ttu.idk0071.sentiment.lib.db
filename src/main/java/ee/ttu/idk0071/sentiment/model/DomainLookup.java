@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="refid")
 public class DomainLookup {
+	public static final Integer STATE_CODE_QUEUED = 1;
+	public static final Integer STATE_CODE_IN_PROGRESS = 2;
+	public static final Integer STATE_CODE_COMPLETE = 3;
+	public static final Integer STATE_CODE_ERROR = 4;
+
 	@Id
 	@SequenceGenerator(name="domain_lookup_seq_gen", sequenceName="domain_lookup_id_seq")  
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="domain_lookup_seq_gen")
@@ -21,9 +26,11 @@ public class DomainLookup {
 	private Long positiveCount;
 	private Long negativeCount;
 	private Long neutralCount;
-	// @Column(columnDefinition = "float8")
-	private Float negativityScore;
-	
+
+	private Float neutralityPercentage;
+	private Float positivityPercentage;
+	private Float negativityPercentage;
+
 	@ManyToOne
 	private Lookup lookup;
 	@ManyToOne
@@ -88,12 +95,32 @@ public class DomainLookup {
 		this.neutralCount = neutralCount;
 	}
 
-	public Float getNegativityScore() {
-		return negativityScore;
+	public Float getNegativityPercentage() {
+		return negativityPercentage;
 	}
 
-	public void setNegativityScore(Float score) {
-		this.negativityScore = score;
+	public void setNegativityPercentage(Float negativityPercentage) {
+		this.negativityPercentage = negativityPercentage;
+	}
+
+	public Float getPositivityPercentage() {
+		return positivityPercentage;
+	}
+
+	public void setPositivityPercentage(Float positivityPercentage) {
+		this.positivityPercentage = positivityPercentage;
+	}
+
+	public Float getNeutralityPercentage() {
+		return neutralityPercentage;
+	}
+
+	public void setNeutralityPercentage(Float neutralityPercentage) {
+		this.neutralityPercentage = neutralityPercentage;
+	}
+
+	public Long getTotalCount() {
+		return negativeCount + neutralCount + positiveCount;
 	}
 
 	public void setCounts(Long negCount, Long neuCount, Long posCount) {
@@ -101,12 +128,16 @@ public class DomainLookup {
 		setNeutralCount(neuCount);
 		setPositiveCount(posCount);
 		
-		// set score
-		Long negPosCount = negCount + posCount;
-		if (negPosCount > 0) {
-			setNegativityScore(negCount.floatValue() / negPosCount.floatValue() * 100F);
+		// set percentages
+		Long totalCount = getTotalCount();
+		if (totalCount > 0) {
+			setNegativityPercentage(negCount.floatValue() / totalCount.floatValue() * 100F);
+			setNeutralityPercentage(neuCount.floatValue() / totalCount.floatValue() * 100F);
+			setPositivityPercentage(posCount.floatValue() / totalCount.floatValue() * 100F);
 		} else {
-			setNegativityScore(null);
+			setNegativityPercentage(null);
+			setNeutralityPercentage(null);
+			setPositivityPercentage(null);
 		}
 	}
 }
