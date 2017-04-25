@@ -21,9 +21,10 @@ public class DomainLookup {
 	private Long positiveCount;
 	private Long negativeCount;
 	private Long neutralCount;
-	// @Column(columnDefinition = "float8")
-	private Float negativityScore;
-	
+	private Float neutralityPercentage;
+	private Float positivityPercentage;
+	private Float negativityPercentage;
+
 	@ManyToOne
 	private Lookup lookup;
 	@ManyToOne
@@ -88,12 +89,28 @@ public class DomainLookup {
 		this.neutralCount = neutralCount;
 	}
 
-	public Float getNegativityScore() {
-		return negativityScore;
+	public Float getNegativityPercentage() {
+		return negativityPercentage;
 	}
 
-	public void setNegativityScore(Float score) {
-		this.negativityScore = score;
+	public void setNegativityPercentage(Float negativityPercentage) {
+		this.negativityPercentage = negativityPercentage;
+	}
+
+	public Float getPositivityPercentage() {
+		return positivityPercentage;
+	}
+
+	public void setPositivityPercentage(Float positivityPercentage) {
+		this.positivityPercentage = positivityPercentage;
+	}
+
+	public Float getNeutralityPercentage() {
+		return neutralityPercentage;
+	}
+
+	public void setNeutralityPercentage(Float neutralityPercentage) {
+		this.neutralityPercentage = neutralityPercentage;
 	}
 
 	public void setCounts(Long negCount, Long neuCount, Long posCount) {
@@ -101,12 +118,16 @@ public class DomainLookup {
 		setNeutralCount(neuCount);
 		setPositiveCount(posCount);
 		
-		// set score
-		Long negPosCount = negCount + posCount;
-		if (negPosCount > 0) {
-			setNegativityScore(negCount.floatValue() / negPosCount.floatValue() * 100F);
+		// set percentages
+		Long totalCount = negCount + neuCount + posCount;
+		if (totalCount > 0) {
+			setNegativityPercentage(negCount.floatValue() / totalCount.floatValue() * 100F);
+			setNeutralityPercentage(neuCount.floatValue() / totalCount.floatValue() * 100F);
+			setPositivityPercentage(posCount.floatValue() / totalCount.floatValue() * 100F);
 		} else {
-			setNegativityScore(null);
+			setNegativityPercentage(null);
+			setNeutralityPercentage(null);
+			setPositivityPercentage(null);
 		}
 	}
 }
