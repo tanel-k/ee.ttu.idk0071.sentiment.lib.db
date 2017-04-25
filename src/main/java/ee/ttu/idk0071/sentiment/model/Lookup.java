@@ -25,6 +25,7 @@ public class Lookup {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="lookup_seq_gen")
 	private Long id;
 	private Date date;
+	private String email;
 
 	@ManyToOne
 	private LookupEntity lookupEntity;
@@ -66,5 +67,13 @@ public class Lookup {
 
 	public void setDomainLookups(List<DomainLookup> domainLookups) {
 		this.domainLookups = domainLookups;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
