@@ -120,7 +120,11 @@ public class DomainLookup {
 	}
 
 	public Long getTotalCount() {
-		return negativeCount + neutralCount + positiveCount;
+		if (negativeCount != null && neutralCount != null && positiveCount != null) {
+			return negativeCount + neutralCount + positiveCount;
+		}
+	
+		return null;
 	}
 
 	public void setCounts(Long negCount, Long neuCount, Long posCount) {
