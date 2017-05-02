@@ -25,8 +25,8 @@ public class DomainLookup {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="domain_lookup_seq_gen")
 	private Long id;
 
-	private Date dateSubmitted;
-	private Date dateCompleted;
+	private Date submittedDate;
+	private Date completedDate;
 
 	private Long positiveCount;
 	private Long negativeCount;
@@ -52,20 +52,20 @@ public class DomainLookup {
 		this.id = id;
 	}
 
-	public Date getDateSubmitted() {
-		return dateSubmitted;
+	public Date getSubmittedDate() {
+		return submittedDate;
 	}
 
-	public void setDateSubmitted(Date dateSubmitted) {
-		this.dateSubmitted = dateSubmitted;
+	public void setSubmittedDate(Date submittedDate) {
+		this.submittedDate = submittedDate;
 	}
 
-	public Date getDateCompleted() {
-		return dateCompleted;
+	public Date getCompletedDate() {
+		return completedDate;
 	}
 
-	public void setDateCompleted(Date dateCompleted) {
-		this.dateCompleted = dateCompleted;
+	public void setCompletedDate(Date completedDate) {
+		this.completedDate = completedDate;
 	}
 
 	public void setDomainLookupState(DomainLookupState domainLookupState) {
