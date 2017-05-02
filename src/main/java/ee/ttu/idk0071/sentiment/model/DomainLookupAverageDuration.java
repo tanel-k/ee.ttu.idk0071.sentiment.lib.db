@@ -3,6 +3,8 @@ package ee.ttu.idk0071.sentiment.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 @Entity
 public class DomainLookupAverageDuration {
 	@Id
@@ -26,6 +28,7 @@ public class DomainLookupAverageDuration {
 		this.name = name;
 	}
 
+	@JsonValue
 	public Float getAverageDurationHours() {
 		return averageDurationHours;
 	}
