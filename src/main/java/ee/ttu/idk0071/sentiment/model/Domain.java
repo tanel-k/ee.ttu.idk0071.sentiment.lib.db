@@ -2,8 +2,11 @@ package ee.ttu.idk0071.sentiment.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Domain {
@@ -15,6 +18,9 @@ public class Domain {
 
 	@ManyToOne
 	private DomainType domainType;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="code")
+	private DomainLookupAverageDuration domainLookupAverageDuration;
 
 	public Domain() {
 		
@@ -50,5 +56,13 @@ public class Domain {
 
 	public void setLookupDomainType(DomainType domainType) {
 		this.domainType = domainType;
+	}
+
+	public DomainLookupAverageDuration getDomainLookupAverageDuration() {
+		return domainLookupAverageDuration;
+	}
+
+	public void setDomainLookupAverageDuration(DomainLookupAverageDuration domainLookupAverageDuration) {
+		this.domainLookupAverageDuration = domainLookupAverageDuration;
 	}
 }

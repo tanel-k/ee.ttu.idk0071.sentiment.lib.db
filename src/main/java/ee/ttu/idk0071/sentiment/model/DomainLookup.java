@@ -1,5 +1,7 @@
 package ee.ttu.idk0071.sentiment.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +25,9 @@ public class DomainLookup {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="domain_lookup_seq_gen")
 	private Long id;
 
+	private Date submittedDate;
+	private Date completedDate;
+
 	private Long positiveCount;
 	private Long negativeCount;
 	private Long neutralCount;
@@ -45,6 +50,22 @@ public class DomainLookup {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Date getSubmittedDate() {
+		return submittedDate;
+	}
+
+	public void setSubmittedDate(Date submittedDate) {
+		this.submittedDate = submittedDate;
+	}
+
+	public Date getCompletedDate() {
+		return completedDate;
+	}
+
+	public void setCompletedDate(Date completedDate) {
+		this.completedDate = completedDate;
 	}
 
 	public void setDomainLookupState(DomainLookupState domainLookupState) {
