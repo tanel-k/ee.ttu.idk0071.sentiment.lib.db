@@ -21,7 +21,7 @@ public class Domain {
 	@ManyToOne
 	private DomainType domainType;
 
-	@JsonProperty("averageDurationMinutes")
+	@JsonProperty("averageDurationSeconds")
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="code")
 	private DomainLookupAverageDuration domainLookupAverageDuration;
