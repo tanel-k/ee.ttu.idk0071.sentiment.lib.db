@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 @Entity
 public class DomainType {
 	@Id
@@ -23,6 +25,7 @@ public class DomainType {
 		this.code = code;
 	}
 
+	@JsonValue
 	public String getName() {
 		return name;
 	}
