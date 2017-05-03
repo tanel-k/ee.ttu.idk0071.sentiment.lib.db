@@ -10,7 +10,7 @@ public class DomainLookupAverageDuration {
 	@Id
 	private Integer code;
 	private String name;
-	private Integer averageDurationMinutes;
+	private Integer averageDurationSeconds;
 
 	public Integer getCode() {
 		return code;
@@ -29,11 +29,11 @@ public class DomainLookupAverageDuration {
 	}
 
 	@JsonValue
-	public Integer getAverageDurationMinutes() {
-		return averageDurationMinutes;
+	public Integer getAverageDurationSeconds() {
+		return averageDurationSeconds;
 	}
 
-	public void setAverageDurationMinutes(Integer averageDurationMinutes) {
-		this.averageDurationMinutes = averageDurationMinutes;
+	public void setAverageDurationSeconds(Integer averageDurationSeconds) {
+		this.averageDurationSeconds = averageDurationSeconds;
 	}
 }
