@@ -8,7 +8,7 @@ public class DomainLookupAverageDuration {
 	@Id
 	private Integer code;
 	private String name;
-	private Float averageDurationHours;
+	private Integer averageDurationMinutes;
 
 	public Integer getCode() {
 		return code;
@@ -26,11 +26,11 @@ public class DomainLookupAverageDuration {
 		this.name = name;
 	}
 
-	public Float getAverageDurationHours() {
-		return averageDurationHours;
+	public Integer getAverageDurationMinutes() {
+		return averageDurationMinutes;
 	}
 
-	public void setAverageDurationHours(Float averageDurationHours) {
-		this.averageDurationHours = averageDurationHours;
+	public void setAverageDurationMinutes(Integer averageDurationMinutes) {
+		this.averageDurationMinutes = averageDurationMinutes;
 	}
 }
