@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -24,6 +25,7 @@ public class LookupEntity {
 	private Long id;
 	private String name;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="lookupEntity", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Lookup> lookups = new LinkedList<Lookup>();
 

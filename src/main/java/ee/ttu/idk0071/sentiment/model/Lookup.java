@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -25,6 +26,7 @@ public class Lookup {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="lookup_seq_gen")
 	private Long id;
 	private Date date;
+	@JsonIgnore
 	private String email;
 
 	@ManyToOne

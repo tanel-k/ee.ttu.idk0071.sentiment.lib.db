@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Domain {
 	@Id
@@ -18,6 +20,8 @@ public class Domain {
 
 	@ManyToOne
 	private DomainType domainType;
+
+	@JsonProperty("averageDurationMinutes")
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="code")
 	private DomainLookupAverageDuration domainLookupAverageDuration;
